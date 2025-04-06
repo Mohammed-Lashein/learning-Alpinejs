@@ -1,3 +1,4 @@
+import dropdown from './dropdown'
 import './style.css'
 // import typescriptLogo from './typescript.svg'
 // import viteLogo from '/vite.svg'
@@ -34,10 +35,5 @@ declare global {
 }
 
 window.Alpine = Alpine
-Alpine.data('dropdown', () => ({
-  isOpen: false,
-  toggle() {
-    this.isOpen = !this.isOpen
-  }
-}))
+Alpine.data('dropdown', dropdown)
 Alpine.start()
