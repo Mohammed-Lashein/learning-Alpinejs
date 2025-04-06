@@ -15,3 +15,4 @@ The below code will throw an error saying `Illegal Invocation`
 By default `x-text` modifies the `innerText` property of an element thus the parent children will be modified . 
 
 It seems that you can't use `x-text` on a parent and a child at the same time . 
+___
