@@ -18,4 +18,10 @@ It seems that you can't use `x-text` on a parent and a child at the same time .
 ___
 
 **Note 2**
-Any call to `Alpine.data()` should come before `Alpine.start()`
+Any call to `Alpine.data()` should come before `Alpine.start()`  
+**Note 3**
+Some notes about `Alpine.data()` cb fn :   
+- It can be called as a normal function within `x-data` (it won't cause re-rendering issues present in react)
+- If the returned object by the cb has `init` method, Alpine will  call it automatically before rendering the component . 
+Which component ?  
+=> Our html component . 
