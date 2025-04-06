@@ -23,7 +23,8 @@ export default (): AlpineComponent<timer> => ({
     }, 1000)
   },
   destroy() {
-
+    console.log('hello from destroy method');
+    
     // The below code will throw ts error because clearInterval(id: number|undefined)
     // clearInterval(this.timer)
     

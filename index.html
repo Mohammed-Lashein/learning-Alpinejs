@@ -23,9 +23,7 @@
 
   <!-- learning through the docs start -->
 
-  <div
-    x-data="{open: false}"
-  >
+  <div x-data="{open: false}">
     <p x-data='{content: "pudding"}'>
 
       <span x-text='open'></span>
@@ -35,16 +33,38 @@
     </p>
   </div>
 
-  <button x-data @click='alert("I was clicked")' class='btn'>
+  <button
+    x-data
+    @click='alert("I was clicked")'
+    class='btn'
+  >
     hello
   </button>
 
-  <section class='p-5' x-data='dropdown(true)'>
-    <button @click='toggle' class='btn'>
+  <section
+    class='p-5'
+    x-data='dropdown(true)'
+  >
+    <button
+      @click='toggle'
+      class='btn'
+    >
       toggle
     </button>
     <span x-show='isOpen'>isOpen is true</span>
     <span x-show='!isOpen'>isOpen is false</span>
+  </section>
+
+  <section>
+    <div x-data='{enabled: false}'>
+      <button @click='enabled = !enabled' class='btn'>toggle timer</button>
+      <template x-if='enabled'>
+        <span
+          x-data='timer'
+          x-text='counter'
+        ></span>
+      </template>
+    </div>
   </section>
 
   <!-- learning through the docs end -->

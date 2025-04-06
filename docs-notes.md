@@ -25,3 +25,23 @@ Some notes about `Alpine.data()` cb fn :
 - If the returned object by the cb has `init` method, Alpine will  call it automatically before rendering the component . 
 Which component ?  
 => Our html component . 
+
+**Note 4**
+In the docs for `Alpine.data()`, they used `<template>` tag . This is the 1st time I use it .  
+Some notes about it (till I study it) :   
+1. Its contents aren't rendered by the browser but instead stored in a document fragment (another mystery to solve)
+2. It shows its contents only when we tell it to using js 
+That's why in this code : 
+```html
+ <section>
+    <div x-data='{enabled: false}'>
+      <button @click='enabled = !enabled' class='btn'>toggle timer</button>
+      <template x-if='enabled'>
+        <span
+          x-data='timer'
+          x-text='counter'
+        ></span>
+      </template>
+    </div>
+```
+when `enabled` became true, the element appeared since the value of that property changed with the help of js . 
