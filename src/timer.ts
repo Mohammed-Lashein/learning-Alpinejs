@@ -1,0 +1,35 @@
+import { AlpineComponent } from "alpinejs"
+
+type timer = {
+  timer: null|number,
+  counter: number,
+  /* init and destory will get inferred by ts . I created this type
+  specifically because setting timer initially to null then changing
+  its value to a number threw an error */
+  // init: Function
+}
+export default (): AlpineComponent<timer> => ({
+  timer : null,
+  counter: 0,
+  init() {
+     // Register an event handler that references the component instance
+    //  I don't understand what does that - from alpine docs - mean !
+    /* 
+      Explanation arrived : 
+      the component instance is what this is referring to
+    */
+    this.timer = setInterval(() => {
+      console.log(`increased counter to ${++this.counter}`);
+    }, 1000)
+  },
+  destroy() {
+
+    // The below code will throw ts error because clearInterval(id: number|undefined)
+    // clearInterval(this.timer)
+    
+    // We should narrow the type so that we don't get compile error 
+    if(this.timer != null) {
+      clearInterval(this.timer)
+    }
+  }
+})

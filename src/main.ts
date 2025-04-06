@@ -27,6 +27,7 @@ import './style.css'
 // vite commented boilerplate end
 
 import Alpine from 'alpinejs'
+import timer from './timer'
 
 declare global {
   interface Window {
@@ -36,4 +37,5 @@ declare global {
 
 window.Alpine = Alpine
 Alpine.data('dropdown', dropdown)
+Alpine.data('timer', timer)
 Alpine.start()
