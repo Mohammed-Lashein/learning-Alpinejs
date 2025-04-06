@@ -34,4 +34,10 @@ declare global {
 }
 
 window.Alpine = Alpine
+Alpine.data('dropdown', () => ({
+  isOpen: false,
+  toggle() {
+    this.isOpen = !this.isOpen
+  }
+}))
 Alpine.start()

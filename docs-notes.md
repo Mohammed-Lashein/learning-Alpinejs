@@ -16,3 +16,6 @@ By default `x-text` modifies the `innerText` property of an element thus the par
 
 It seems that you can't use `x-text` on a parent and a child at the same time . 
 ___
+
+**Note 2**
+Any call to `Alpine.data()` should come before `Alpine.start()`

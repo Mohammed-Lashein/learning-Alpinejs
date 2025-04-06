@@ -39,7 +39,13 @@
     hello
   </button>
 
-
+  <section class='p-5' x-data='dropdown'>
+    <button @click='toggle' class='btn'>
+      toggle
+    </button>
+    <span x-show='isOpen'>isOpen is true</span>
+    <span x-show='!isOpen'>isOpen is false</span>
+  </section>
 
   <!-- learning through the docs end -->
 
