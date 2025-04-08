@@ -1,89 +1,141 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/vite.svg"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Vite + TS</title>
+		<link
+			rel="stylesheet"
+			href="/src/style.css"
+		/>
+	</head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="/vite.svg"
-  />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-  <title>Vite + TS</title>
-  <link
-    rel="stylesheet"
-    href="/src/style.css"
-  >
-</head>
+	<body>
+		<!-- learning through the docs start -->
 
-<body>
+		<div x-data="{open: false}">
+			<p x-data='{content: "pudding"}'>
+				<span x-text="open"></span>
+				<span x-text="content"></span>
+				<strong x-text="content"> </strong>
+			</p>
+		</div>
 
-  <!-- learning through the docs start -->
+		<button
+			x-data
+			@click='alert("I was clicked")'
+			class="btn"
+		>
+			hello
+		</button>
 
-  <strong x-data='{greeting: "hello"}' x-text='greeting'>
-    <span>
-      hi
-    </span>
-  </strong>
+		<section
+			class="p-5"
+			x-data="dropdown(true)"
+		>
+			<button
+				@click="toggle"
+				class="btn"
+			>
+				toggle
+			</button>
+			<span x-show="isOpen">isOpen is true</span>
+			<span x-show="!isOpen">isOpen is false</span>
+		</section>
 
-  <div x-data="{open: false}">
-    <p x-data='{content: "pudding"}'>
+		<section>
+			<div x-data="{enabled: false}">
+				<button
+					@click="enabled = !enabled"
+					class="btn"
+				>
+					toggle timer
+				</button>
+				<template x-if="enabled">
+					<span
+						x-data="timer"
+						x-text="counter"
+					></span>
+				</template>
+			</div>
+		</section>
 
-      <span x-text='open'></span>
-      <span x-text='content'></span>
-      <strong x-text='content'>
-      </strong>
-    </p>
-  </div>
+		<hr />
+		<button
+			@click='alert("wont work !")'
+			class="btn"
+		>
+			won't work because there is no parent having x-data
+		</button>
+		<hr />
 
-  <button
-    x-data
-    @click='alert("I was clicked")'
-    class='btn'
-  >
-    hello
-  </button>
+		<div x-data="">
+			<!-- No need to pass e on calling the fn -->
+			<button
+				class="btn"
+				x-on:click="handleClick"
+			>
+				click
+			</button>
+			<button
+				class="btn"
+				message="keep studying !"
+				x-on:click="alert($event.target.getAttribute('message'))"
+			>
+				show attribute
+			</button>
+			<input
+				type="text"
+				@keyup.enter="alert('submitted !')"
+				class="border-2"
+			/>
+			<input
+				type="text"
+				@keyup.shift.enter="console.log($event);alert('submitted !')"
+				class="border-2"
+			/>
+		</div>
+		<script>
+			function handleClick(e) {
+				console.log(e.target)
+			}
+		</script>
 
-  <section
-    class='p-5'
-    x-data='dropdown(true)'
-  >
-    <button
-      @click='toggle'
-      class='btn'
-    >
-      toggle
-    </button>
-    <span x-show='isOpen'>isOpen is true</span>
-    <span x-show='!isOpen'>isOpen is false</span>
-  </section>
+		<!-- synthetic events -->
+		<div
+			x-data=""
+			@foo="alert('hi from foo event!')"
+		>
+			<!-- the verbose approach -->
+			<button
+				class="btn"
+				@click="$event.target.dispatchEvent(new CustomEvent('foo', {bubbles: true}))"
+			>
+				verbose trigger foo e
+			</button>
+			<!-- the concise approach -->
+			<button
+				class="btn"
+				@click="$dispatch('foo')"
+			>
+				concise trigger foo e
+			</button>
+		</div>
 
-  <section>
-    <div x-data='{enabled: false}'>
-      <button @click='enabled = !enabled' class='btn'>toggle timer</button>
-      <template x-if='enabled'>
-        <span
-          x-data='timer'
-          x-text='counter'
-        ></span>
-      </template>
-    </div>
-  </section>
+		<!-- learning through the docs end -->
 
-  <!-- learning through the docs end -->
-
-
-
-
-
-  <div id="app"></div>
-  <script
-    type="module"
-    src="/src/main.ts"
-  ></script>
-</body>
-
+		<div id="app"></div>
+		<script
+			type="module"
+			src="/src/main.ts"
+		></script>
+	</body>
 </html>

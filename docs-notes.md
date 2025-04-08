@@ -56,3 +56,62 @@ ___
   </strong>
 ```
 The above piece of code will render '**hello**' and will ignore the span 
+___
+**Note 6**
+x-on directive works only in a parent having x-data directive
+```html
+<button @click='alert("wont work !")' class='btn'>
+    won't work because there is no parent having x-data
+  </button>
+```
+___
+**Note 7**
+We can access e obj without explicitly passing it to a function
+```html
+  <div x-data="">
+    <button class='btn' x-on:click='handleClick'>
+      click
+    </button>
+  </div>
+
+  <script>
+    function handleClick(e) {
+      console.log(e.target);
+      
+    }
+  </script>
+```
+**Note 8**
+How to listen for a shift + enter keys combination in alpine ?  
+```html
+    <input type="text" @keyup.shift.enter="console.log($event);alert('submitted !')" class='border-2'/>
+```
+At first I didn't understand why were we listening to keyup instead of keydown, but after trying both approaches, listening for keyup seems more natural in terms of UX as firing the alert on keydown is a bit intrusive and fast .  
+In plain js : 
+```js
+event.key = 'Enter'
+event.shiftKey = true
+```
+___
+**Note 9**
+Dispatching synthetic events (verbose and concise way):  
+```html
+ <!-- synthetic events -->
+  <div x-data=""  @foo="alert('hi from foo event!')">
+    <!-- the verbose approach -->
+    <button
+      class='btn'
+      @click="$event.target.dispatchEvent(new CustomEvent('foo', {bubbles: true}))"
+    >
+      verbose trigger foo e
+    </button>
+      <!-- the concise approach -->
+    <button
+      class='btn'
+      @click="$dispatch('foo')"
+    >
+      concise trigger foo e
+    </button>
+  </div>
+
+```

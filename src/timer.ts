@@ -23,6 +23,10 @@ export default (): AlpineComponent<timer> => ({
     }, 1000)
   },
   destroy() {
+    /* 
+    - Will be called automatically when a component is destroyed
+    - An example where a component is destroyed is when using one inside an x-if
+    */
     console.log('hello from destroy method');
     
     // The below code will throw ts error because clearInterval(id: number|undefined)
