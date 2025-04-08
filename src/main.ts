@@ -1,5 +1,5 @@
-import dropdown from './dropdown'
-import './style.css'
+import { dropdown } from "./data/dropdown"
+import "./style.css"
 // import typescriptLogo from './typescript.svg'
 // import viteLogo from '/vite.svg'
 // import { setupCounter } from './counter.ts'
@@ -26,21 +26,23 @@ import './style.css'
 
 // vite commented boilerplate end
 
-import Alpine from 'alpinejs'
-import timer from './timer'
+import Alpine from "alpinejs"
+import { timer } from "./data/timer"
+import { dropdownActions } from "./data/dropdownActions"
 
 declare global {
-  interface Window {
-    Alpine: typeof Alpine
-  }
+	interface Window {
+		Alpine: typeof Alpine
+	}
 }
 
 window.Alpine = Alpine
-Alpine.data('dropdown', dropdown)
-Alpine.data('timer', timer)
-Alpine.store('tabs', {
-  current: 'first',
-  items: ['first', '2nd', '3rd']
+Alpine.data("dropdown", dropdown)
+Alpine.data("timer", timer)
+Alpine.data("dropdownActions", dropdownActions)
+Alpine.store("tabs", {
+	current: "first",
+	items: ["first", "2nd", "3rd"],
 })
 /* For a dropdown component I think we don't need a store as a start . Using x-data will
 be more than enough */
@@ -48,3 +50,4 @@ be more than enough */
 //   current: null,
 // })
 Alpine.start()
+

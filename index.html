@@ -180,7 +180,7 @@
 			<!-- Works thanks to the provided fixed width -->
 			<article
 				class="relative"
-				x-data="{open: false}"
+				x-data="dropdownActions"
 			>
 				<button
 					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
@@ -204,15 +204,7 @@
 					class="absolute"
 					x-show="open"
 				>
-					<!-- <ul x-data="{currentAction: null, 
-            onDropdownElementClick(e) {
-              currentAction = e.target.innerText;
-              open = false
-              console.log(currentAction);
-              console.log(open);
-            }
-          }"> -->
-          <ul x-data="dropdownActions">
+          <ul x-data>
 						<li
 							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
 							@click="onDropdownElementClick"
@@ -258,25 +250,19 @@
 		</section>
 
     <script>
-      function dropdownActions() {
-        return {
-          currentAction: null,
-        onDropdownElementClick(e) {
-          currentAction = e.target.innerText;
-        // this.$root.open = false;
-        this.$data.open = false
-        console.log(this.$data.open);
-        console.log(this.$data);
-        console.log(currentAction)
-      }
-        }
-      }
-      function onDropdownElementClick(e) {
-        open = false;
-        currentAction = e.target.value;
-        console.log(currentAction)
-
-      }
+      // function dropdownActions() {
+      //   return {
+      //     currentAction: null,
+      //   onDropdownElementClick(e) {
+      //     currentAction = e.target.innerText;
+      //   // this.$root.open = false;
+      //   this.$data.open = false
+      //   console.log(this.$data.open);
+      //   console.log(this.$data);
+      //   console.log(currentAction)
+      // }
+      //   }
+      // }
     </script>
 		<!-- dropdown component end -->
 
