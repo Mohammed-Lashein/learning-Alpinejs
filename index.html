@@ -209,6 +209,8 @@
 						<li
 							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
 							@click="onDropdownElementClick"
+              tabindex="0"
+              @keydown.enter = "onDropdownElementClick"
 						>
 							<!-- Setting px-6 on 1 li made all of the lis follow the same expansion 
               ratio . 
@@ -223,12 +225,16 @@
 						<li
 							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
 							@click="onDropdownElementClick"
+              tabindex="0"
+              @keydown.enter = "onDropdownElementClick"
 						>
 							choice 2
 						</li>
 						<li
 							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
 							@click="onDropdownElementClick"
+              tabindex="0"
+              @keydown.enter = "onDropdownElementClick"
 						>
 							choice 3
 						</li>
