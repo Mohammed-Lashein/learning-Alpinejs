@@ -130,6 +130,14 @@
 			</button>
 		</div>
 
+		<!-- store -->
+		<div x-data="">
+      <span x-text="$store.tabs.current"></span>
+
+      <button @click="$store.tabs.current= $store.tabs.items[0]" class="btn">1st tab</button>
+      <button @click="$store.tabs.current=$store.tabs.items[1]" class="btn">2nd tab</button>
+      <button @click="$store.tabs.current=$store.tabs.items[2]" class="btn">3rd tab</button>
+    </div>
 		<!-- learning through the docs end -->
 
 		<div id="app"></div>

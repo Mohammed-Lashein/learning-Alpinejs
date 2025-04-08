@@ -38,4 +38,8 @@ declare global {
 window.Alpine = Alpine
 Alpine.data('dropdown', dropdown)
 Alpine.data('timer', timer)
+Alpine.store('tabs', {
+  current: 'first',
+  items: ['first', '2nd', '3rd']
+})
 Alpine.start()
