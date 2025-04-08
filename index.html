@@ -178,10 +178,13 @@
 			x-data
 		>
 			<!-- Works thanks to the provided fixed width -->
-			<article class="relative" x-data="{open: false}">
+			<article
+				class="relative"
+				x-data="{open: false}"
+			>
 				<button
 					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
-          @click="open = !open"
+					@click="open = !open"
 				>
 					Action
 					<span class="w-4 inline-block relative top-0.5">
@@ -197,10 +200,22 @@
 						</svg>
 					</span>
 				</button>
-				<div class="absolute" x-show="open">
-					<ul>
+				<div
+					class="absolute"
+					x-show="open"
+				>
+					<!-- <ul x-data="{currentAction: null, 
+            onDropdownElementClick(e) {
+              currentAction = e.target.innerText;
+              open = false
+              console.log(currentAction);
+              console.log(open);
+            }
+          }"> -->
+          <ul x-data="dropdownActions">
 						<li
 							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+							@click="onDropdownElementClick"
 						>
 							<!-- Setting px-6 on 1 li made all of the lis follow the same expansion 
               ratio . 
@@ -214,11 +229,13 @@
 						</li>
 						<li
 							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+							@click="onDropdownElementClick"
 						>
 							choice 2
 						</li>
 						<li
 							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+							@click="onDropdownElementClick"
 						>
 							choice 3
 						</li>
@@ -239,6 +256,28 @@
 				</button>
 			</article>
 		</section>
+
+    <script>
+      function dropdownActions() {
+        return {
+          currentAction: null,
+        onDropdownElementClick(e) {
+          currentAction = e.target.innerText;
+        // this.$root.open = false;
+        this.$data.open = false
+        console.log(this.$data.open);
+        console.log(this.$data);
+        console.log(currentAction)
+      }
+        }
+      }
+      function onDropdownElementClick(e) {
+        open = false;
+        currentAction = e.target.value;
+        console.log(currentAction)
+
+      }
+    </script>
 		<!-- dropdown component end -->
 
 		<div id="app"></div>

@@ -42,4 +42,9 @@ Alpine.store('tabs', {
   current: 'first',
   items: ['first', '2nd', '3rd']
 })
+/* For a dropdown component I think we don't need a store as a start . Using x-data will
+be more than enough */
+// Alpine.store('selectedAction', {
+//   current: null,
+// })
 Alpine.start()
