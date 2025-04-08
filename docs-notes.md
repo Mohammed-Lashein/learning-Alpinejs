@@ -45,3 +45,14 @@ That's why in this code :
     </div>
 ```
 when `enabled` became true, the element appeared since the value of that property changed with the help of js . 
+___
+**Note 5**
+`x-text` replaces the innerText of an element . In other words, if the element having this attribute has children, they will be replaced with the value returned by `x-text`
+```html
+<strong x-data='{greeting: "hello"}' x-text='greeting'>
+    <span>
+      hi
+    </span>
+  </strong>
+```
+The above piece of code will render '**hello**' and will ignore the span 
