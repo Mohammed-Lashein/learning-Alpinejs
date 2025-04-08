@@ -168,19 +168,78 @@
 			</button>
 		</div>
 
-    <hr/>
+		<hr />
 		<!-- learning through the docs end -->
 
-    <!-- dropdown component start -->
-  
-    <section class="m-5 mx-auto w-full"> ❌  <!-- won't be centered ! You need to 
-      specify a fixed width to the element -->
-      dropdown component
-    </section>
-    <section class="m-5 mx-auto w-30"> ✅ <!-- Works thanks to the provided fixed width -->
-      dropdown component
-    </section>
-    <!-- dropdown component end -->
+		<!-- dropdown component start -->
+
+		<section
+			class="m-5 mx-auto w-30"
+			x-data
+		>
+			<!-- Works thanks to the provided fixed width -->
+			<article class="relative" x-data="{open: false}">
+				<button
+					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
+          @click="open = !open"
+				>
+					Action
+					<span class="w-4 inline-block relative top-0.5">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 384 512"
+							class="h-4"
+						>
+							<!-- Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc-->
+							<path
+								d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+							/>
+						</svg>
+					</span>
+				</button>
+				<div class="absolute" x-show="open">
+					<ul>
+						<li
+							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+						>
+							<!-- Setting px-6 on 1 li made all of the lis follow the same expansion 
+              ratio . 
+              Why did that happen ?
+              => Since the container element (ul) doesn't have a fixed width, it will
+              take the width of its widest element . 
+              That's why it seems the other lis expanded one changing the padding of the
+              1st one, but instead they were just following the expansion of the container 
+              -->
+							choice 1
+						</li>
+						<li
+							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+						>
+							choice 2
+						</li>
+						<li
+							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+						>
+							choice 3
+						</li>
+					</ul>
+				</div>
+			</article>
+
+			<article class="flex gap-2 mt-4 w-[300px]">
+				<button
+					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
+				>
+					Other button
+				</button>
+				<button
+					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
+				>
+					Another button
+				</button>
+			</article>
+		</section>
+		<!-- dropdown component end -->
 
 		<div id="app"></div>
 		<script
