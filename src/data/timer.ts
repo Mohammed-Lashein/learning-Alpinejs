@@ -1,7 +1,7 @@
 import { AlpineComponent } from "alpinejs"
 
 type timer = {
-  timer: null|number,
+  timer: null|number|NodeJS.Timeout,
   counter: number,
   /* init and destory will get inferred by ts . I created this type
   specifically because setting timer initially to null then changing
