@@ -191,7 +191,6 @@
 			<article
 				class="relative"
 				x-data="dropdownActions"
-        @click.outside = 'close($refs.button)'
 				x-id="['dropdown-button']"
 				@focusin.window = "! $refs.panel.contains($event.target) && close()"
 			>
@@ -236,6 +235,7 @@
 					@keydown.escape.prevent.stop = "close($refs.button)"
 					x-bind:id="$id('dropdown-button')"
 					x-ref="panel"
+					@click.outside = "close($refs.button)"
 				>
 				<!-- the pressing of escape key is not working even though I followed along 
 				with the code . 
