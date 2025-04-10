@@ -205,7 +205,15 @@
 					class="absolute"
 					x-show="open"
 					style="display: none;"
+					@keydown.escape.prevent.stop = "open = false"
 				>
+				<!-- the pressing of escape key is not working even though I followed along 
+				with the code . 
+				
+				WRONG : It is working but you have to be in the dropdown and hit escape so that
+				the functionality works (The 1st time I tried it I was still focusing on the
+				Action button
+				)-->
           <ul x-data>
 						<li
 							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
