@@ -235,6 +235,7 @@
 					@keydown.escape.prevent.stop = "close($refs.button)"
 					x-bind:id="$id('dropdown-button')"
 					x-ref="panel"
+					x-transition
 					@click.outside = "close($refs.button)"
 				>
 				<!-- the pressing of escape key is not working even though I followed along 
