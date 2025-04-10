@@ -177,6 +177,16 @@
 			class="m-5 mx-auto w-30"
 			x-data
 		>
+		<!-- 
+			Difference between focusin and focus events : 
+			focus : 
+				-- first first
+				-- Does not bubble
+
+			focusin : 
+				-- fires after focus e 
+				-- bubbles (that's why we used it here in our dropdown component)
+		-->
 			<!-- Works thanks to the provided fixed width -->
 			<article
 				class="relative"
