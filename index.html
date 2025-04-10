@@ -191,7 +191,7 @@
 			<article
 				class="relative"
 				x-data="dropdownActions"
-        @click.outside = 'close()'
+        @click.outside = 'close($refs.button)'
 				x-id="['dropdown-button']"
 				@focusin.window = "! $refs.panel.contains($event.target) && close()"
 			>
