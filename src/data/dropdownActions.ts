@@ -19,8 +19,9 @@ export function dropdownActions(): AlpineComponent<dropdownActionsType> {
   console.log(this.open);
   console.log(this.currentAction)
 },
-  close() {
+  close(focusAfter: HTMLElement) {
     this.open = false
+    focusAfter && focusAfter.focus()
   }
   }
 }

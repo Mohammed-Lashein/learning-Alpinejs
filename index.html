@@ -209,6 +209,7 @@
 					type="button"
 					:aria-expanded="open"
 					:aria-controls="$id('dropdown-button')"
+					x-ref="button"
 				>
 					Action
 					<span class="w-4 inline-block relative">
@@ -232,7 +233,7 @@
 					class="absolute"
 					x-show="open"
 					style="display: none;"
-					@keydown.escape.prevent.stop = "close()"
+					@keydown.escape.prevent.stop = "close($refs.button)"
 					x-bind:id="$id('dropdown-button')"
 					x-ref="panel"
 				>
