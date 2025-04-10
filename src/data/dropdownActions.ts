@@ -4,6 +4,7 @@ type dropdownActionsType = {
   open: boolean,
   currentAction: null | string,
   onDropdownElementClick: Function
+  close: Function
   // init: Function
 }
 
@@ -18,5 +19,8 @@ export function dropdownActions(): AlpineComponent<dropdownActionsType> {
   console.log(this.open);
   console.log(this.currentAction)
 },
+  close() {
+    this.open = false
+  }
   }
 }

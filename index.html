@@ -181,8 +181,9 @@
 			<article
 				class="relative"
 				x-data="dropdownActions"
-        @click.outside = 'open = false'
+        @click.outside = 'close()'
 				x-id="['dropdown-button']"
+				@focusin.window = "! $refs.panel.contains($event.target) && close()"
 			>
 			<!--
 				Whenever a button is not used in a form, it should have type button (just
@@ -221,8 +222,9 @@
 					class="absolute"
 					x-show="open"
 					style="display: none;"
-					@keydown.escape.prevent.stop = "open = false"
+					@keydown.escape.prevent.stop = "close()"
 					x-bind:id="$id('dropdown-button')"
+					x-ref="panel"
 				>
 				<!-- the pressing of escape key is not working even though I followed along 
 				with the code . 
