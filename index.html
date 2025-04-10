@@ -170,148 +170,22 @@
 
 		<hr />
 		<!-- learning through the docs end -->
+		<div class="mt-5">
+			<!-- in the href, the / is important otherwise the target='_blank' won't take
+			effect . 
+			After asking chat, he told me that /dropdown.html is an absolute path relative
+			to the domain root (in our case localhost:5173) . 
 
-		<!-- dropdown component start -->
-
-		<section
-			class="m-5 mx-auto w-30"
-			x-data
-		>
-		<!-- 
-			Difference between focusin and focus events : 
-			focus : 
-				-- first first
-				-- Does not bubble
-
-			focusin : 
-				-- fires after focus e 
-				-- bubbles (that's why we used it here in our dropdown component)
-		-->
-			<!-- Works thanks to the provided fixed width -->
-			<article
-				class="relative"
-				x-data="dropdownActions"
-				x-id="['dropdown-button']"
-				@focusin.window = "! $refs.panel.contains($event.target) && close()"
-			>
-			<!--
-				Whenever a button is not used in a form, it should have type button (just
-				a semantic enhancement, it doesn't affect the functionality) 
-
-				:aria-expanded => Determines if this element controls expansion of another el
-				:aria-controls => We use it when the element toggling the items visibility is not
-				a container for these items . 
+			So regardless of our current location in the dir tree, we will get directed 
+			to the correct url relative to our domain root 
 			-->
-				<button
-					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
-					@click="open = !open"
-					type="button"
-					:aria-expanded="open"
-					:aria-controls="$id('dropdown-button')"
-					x-ref="button"
-				>
-					Action
-					<span class="w-4 inline-block relative">
-						&darr;
-						<!-- <svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 384 512"
-							class="h-4"
-						>
-							<path
-								d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-							/>
-						</svg> -->
-					</span>
-				</button>
-				<!-- 
-					How does x-bind:id="$id('dropdown-button')" work ?
-				From the docs : x-bind allows you to set html attributes on elements based on
-				the result of js expressions -->
-				<div
-					class="absolute"
-					x-show="open"
-					style="display: none;"
-					@keydown.escape.prevent.stop = "close($refs.button)"
-					x-bind:id="$id('dropdown-button')"
-					x-ref="panel"
-					x-transition.origin.top.left
-					@click.outside = "close($refs.button)"
-				>
-				<!-- the pressing of escape key is not working even though I followed along 
-				with the code . 
-				
-				WRONG : It is working but you have to be in the dropdown and hit escape so that
-				the functionality works (The 1st time I tried it I was still focusing on the
-				Action button
-				)-->
-          <ul x-data>
-						<li
-							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
-							@click="onDropdownElementClick"
-              tabindex="0"
-              @keydown.enter = "onDropdownElementClick"
-						>
-							<!-- Setting px-6 on 1 li made all of the lis follow the same expansion 
-              ratio . 
-              Why did that happen ?
-              => Since the container element (ul) doesn't have a fixed width, it will
-              take the width of its widest element . 
-              That's why it seems the other lis expanded one changing the padding of the
-              1st one, but instead they were just following the expansion of the container 
-              -->
-							choice 1
-						</li>
-						<li
-							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
-							@click="onDropdownElementClick"
-              tabindex="0"
-              @keydown.enter = "onDropdownElementClick"
-						>
-							choice 2
-						</li>
-						<li
-							class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
-							@click="onDropdownElementClick"
-              tabindex="0"
-              @keydown.enter = "onDropdownElementClick"
-						>
-							choice 3
-						</li>
-					</ul>
-				</div>
-			</article>
-
-			<article class="flex gap-2 mt-4 w-[300px]">
-				<button
-					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
-				>
-					Other button
-				</button>
-				<button
-					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
-				>
-					Another button
-				</button>
-			</article>
-		</section>
-
-    <script>
-      // function dropdownActions() {
-      //   return {
-      //     currentAction: null,
-      //   onDropdownElementClick(e) {
-      //     currentAction = e.target.innerText;
-      //   // this.$root.open = false;
-      //   this.$data.open = false
-      //   console.log(this.$data.open);
-      //   console.log(this.$data);
-      //   console.log(currentAction)
-      // }
-      //   }
-      // }
-    </script>
-		<!-- dropdown component end -->
+			<a
+				href="/dropdown.html"
+				class="p-4 rounded-3xl text-white bg-blue-400 hover:bg-blue-500"
+				target="_blank"
+				>See dropdown component in action</a
+			>
+		</div>
 
 		<div id="app"></div>
 		<script

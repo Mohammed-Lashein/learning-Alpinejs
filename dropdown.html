@@ -11,9 +11,123 @@ this page in action . So, I will jam the code in index.html then after finishing
 		<title>Dropdown component</title>
 	</head>
 	<body>
-    <h1>
-      Hello dropdown component ! yay
-    </h1>
+   		<!-- dropdown component start -->
+
+		<section
+		class="m-5 mx-auto w-30"
+		x-data
+	>
+	<!-- 
+		Difference between focusin and focus events : 
+		focus : 
+			-- first first
+			-- Does not bubble
+
+		focusin : 
+			-- fires after focus e 
+			-- bubbles (that's why we used it here in our dropdown component)
+	-->
+		<!-- Works thanks to the provided fixed width -->
+		<article
+			class="relative"
+			x-data="dropdownActions"
+			x-id="['dropdown-button']"
+			@focusin.window = "! $refs.panel.contains($event.target) && close()"
+		>
+		<!--
+			Whenever a button is not used in a form, it should have type button (just
+			a semantic enhancement, it doesn't affect the functionality) 
+
+			:aria-expanded => Determines if this element controls expansion of another el
+			:aria-controls => We use it when the element toggling the items visibility is not
+			a container for these items . 
+		-->
+			<button
+				class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
+				@click="open = !open"
+				type="button"
+				:aria-expanded="open"
+				:aria-controls="$id('dropdown-button')"
+				x-ref="button"
+			>
+				Action
+				<span class="w-4 inline-block relative">
+					&darr;
+				</span>
+			</button>
+			<!-- 
+				How does x-bind:id="$id('dropdown-button')" work ?
+			From the docs : x-bind allows you to set html attributes on elements based on
+			the result of js expressions -->
+			<div
+				class="absolute"
+				x-show="open"
+				style="display: none;"
+				@keydown.escape.prevent.stop = "close($refs.button)"
+				x-bind:id="$id('dropdown-button')"
+				x-ref="panel"
+				x-transition.origin.top.left
+				@click.outside = "close($refs.button)"
+			>
+			<!-- the pressing of escape key is not working even though I followed along 
+			with the code . 
+			
+			WRONG : It is working but you have to be in the dropdown and hit escape so that
+			the functionality works (The 1st time I tried it I was still focusing on the
+			Action button
+			)-->
+				<ul x-data>
+					<li
+						class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+						@click="onDropdownElementClick"
+						tabindex="0"
+						@keydown.enter = "onDropdownElementClick"
+					>
+						<!-- Setting px-6 on 1 li made all of the lis follow the same expansion 
+						ratio . 
+						Why did that happen ?
+						=> Since the container element (ul) doesn't have a fixed width, it will
+						take the width of its widest element . 
+						That's why it seems the other lis expanded one changing the padding of the
+						1st one, but instead they were just following the expansion of the container 
+						-->
+						choice 1
+					</li>
+					<li
+						class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+						@click="onDropdownElementClick"
+						tabindex="0"
+						@keydown.enter = "onDropdownElementClick"
+					>
+						choice 2
+					</li>
+					<li
+						class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 px-6 outline-3 outline-transparent"
+						@click="onDropdownElementClick"
+						tabindex="0"
+						@keydown.enter = "onDropdownElementClick"
+					>
+						choice 3
+					</li>
+				</ul>
+			</div>
+		</article>
+
+		<article class="flex gap-2 mt-4 w-[300px]">
+			<button
+				class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
+			>
+				Other button
+			</button>
+			<button
+				class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
+			>
+				Another button
+			</button>
+		</article>
+	</section>
+	<!-- dropdown component end -->
+
 		<script
 			type="module"
 			src="/src/main.ts"
