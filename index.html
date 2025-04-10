@@ -182,10 +182,22 @@
 				class="relative"
 				x-data="dropdownActions"
         @click.outside = 'open = false'
+				x-id="['dropdown-button']"
 			>
+			<!--
+				Whenever a button is not used in a form, it should have type button (just
+				a semantic enhancement, it doesn't affect the functionality) 
+
+				:aria-expanded => Determines if this element controls expansion of another el
+				:aria-controls => We use it when the element toggling the items visibility is not
+				a container for these items . 
+			-->
 				<button
 					class="bg-white border-1 focus:outline-blue-300 hover:outline-blue-300 cursor-pointer p-2 outline-3 outline-transparent"
 					@click="open = !open"
+					type="button"
+					:aria-expanded="open"
+					:aria-controls="$id('dropdown-button')"
 				>
 					Action
 					<span class="w-4 inline-block relative">
@@ -201,11 +213,16 @@
 						</svg> -->
 					</span>
 				</button>
+				<!-- 
+					How does x-bind:id="$id('dropdown-button')" work ?
+				From the docs : x-bind allows you to set html attributes on elements based on
+				the result of js expressions -->
 				<div
 					class="absolute"
 					x-show="open"
 					style="display: none;"
 					@keydown.escape.prevent.stop = "open = false"
+					x-bind:id="$id('dropdown-button')"
 				>
 				<!-- the pressing of escape key is not working even though I followed along 
 				with the code . 
