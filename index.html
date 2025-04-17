@@ -189,10 +189,13 @@
 
 		<!-- Start : Implementing accordion component -->
 		 <!-- Accordion is not defined yet ! -->
-		<div x-data="Accordion(isExpanded, 300)">
-			<button @click="console.log($store.main)" class="btn">
+		<div x-data="Accordion">
+			<button @click="console.log($store.main.isMobile = !$store.main.isMobile)" class="btn">
 				click !
 			</button>
+			<span x-text="$store.main.isMobile">
+
+			</span>
 		</div>
 		<!-- End : Implementing accordion component -->
 
