@@ -29,6 +29,8 @@ import "./style.css"
 import Alpine from "alpinejs"
 import { timer } from "./data/timer"
 import { dropdownActions } from "./data/dropdownActions"
+import { Accordion } from "./data/satoshi/Accordion"
+import { Main } from "./data/store/Main"
 
 declare global {
 	interface Window {
@@ -49,5 +51,10 @@ be more than enough */
 // Alpine.store('selectedAction', {
 //   current: null,
 // })
+
+// Accordion stuff start
+Alpine.store("main", Main)
+Alpine.data("Accordion", Accordion)
+// Accordion stuff end
 Alpine.start()
 
